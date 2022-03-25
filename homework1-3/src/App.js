@@ -1,17 +1,18 @@
 import './App.css'
-import data from './data/data.js'
+import Image from './components/playlist/images/index'
+import Title from './components/playlist/title/index'
+import Artist from './components/playlist/artist/index'
+import Button from './components/playlist/button/index'
 
 function App() {
   return (
     <div className="App">
       <div className="container">
         <div className="song">
-            <img 
-              src={data.album.images[1].url} 
-            />
-            <h3>{data.album.name}</h3>
-            <p>Artist: {data.album.artists[0].name}</p>
-            <button>Select</button>
+            <Image />
+            <Title />
+            <Artist />
+            <Button />
         </div>
     </div>
     </div>
@@ -19,3 +20,4 @@ function App() {
 }
 
 export default App;
+
