@@ -7,9 +7,8 @@
 }
 
 .song {
-  width: 25%;
-  display: inline-block;
-  padding-bottom: 20px;
+  margin: 30px;
+  border-bottom: 1px solid #bfbdbd;
 }
 
 .song img {
@@ -20,6 +19,8 @@
 
 button{
   font-size: 20px;
+  width: 400px;
+  height: 40px;
 }
 
 @media all and (max-width: 1000px) {
