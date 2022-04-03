@@ -8,6 +8,7 @@ export default class Home extends Component{
         accessToken: '',
         isAuthorize: false,
         tracks: [],
+        selectedSong: ''
     };
 
     componentDidMount() {
@@ -17,6 +18,10 @@ export default class Home extends Component{
 
         this.setState({ accessToken, isAuthorize: accessToken !== null });
     }
+
+    componentDidUpdate(prevProps, prevState) {
+      console.log(this.state.selectedSong)  
+    } 
 
     getSpotifyAuthorize() {
         const state = Date.now().toString();
@@ -31,7 +36,7 @@ export default class Home extends Component{
 
     render() {
         return (
-            <div className='container'>
+            <div className='loginAuth'>
                 {!this.state.isAuthorize && (
                     <div className='login'>
                         <p>Login to Spotify here</p>
@@ -49,12 +54,15 @@ export default class Home extends Component{
                         {this.state.tracks.length === 0 && <p>No tracks searched</p>}
 
                         <div className='track-list'>
-                            {this.state.tracks.map((track) => (
+                            {this.state.tracks.map((tracks) => (
                                 <SongCard
-                                    key={track.id}
-                                    url={track.album.images[0].url}
-                                    title={track.name}
-                                    artist={track.artsits[0].name}
+                                    key={tracks.id}
+                                    url={tracks.album.images[0].url}
+                                    title={tracks.name}
+                                    artist={tracks.artists[0].name}
+                                    uri={tracks.uri}
+                                    selected={tracks.uri === this.state.selectedSong}
+                                    onSelected={(uri) => this.setState({selectedSong: uri})}
                                 />
                             ))}
                         </div>

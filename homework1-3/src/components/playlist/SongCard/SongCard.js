@@ -1,11 +1,12 @@
-const SongCard = ({authUrl, title, artist, url, alt}) => {
+const SongCard = ({authUrl, title, artist, url, alt, uri, selected, onSelected}) => {
   return (
-      <div  className="song">
-          <h1>Spotify Playlist</h1>
-          <a className='btnLogin' href={authUrl}>Sign In</a>
+      <div className="song">
           <img src={url} alt={alt} />
           <h4>{title}</h4>
           <p>{artist}</p>
+          <button onClick={() => onSelected(uri)}>
+            {selected ? 'Deselect' : 'Select'}
+          </button>    
       </div>
   )
 }

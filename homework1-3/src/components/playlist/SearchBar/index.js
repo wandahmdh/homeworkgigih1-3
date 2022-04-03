@@ -17,7 +17,7 @@ export default class SearchBar extends Component{
 
     var requestOptions = {
       headers: {
-        Authorization: 'Bearer' + this.props.accessToken,
+        Authorization: 'Bearer ' + this.props.accessToken,
           'content-type': 'application/json',
       },
     };
@@ -28,23 +28,24 @@ export default class SearchBar extends Component{
         requestOptions
       ).then((data) => data.json());
 
-      const tracks = response.tracks.value;
+      const tracks = response.tracks.items;
       this.props.onSuccess(tracks);
     }
     catch (e) {
-      alert(e);
+      console.log(e);
     }
   }
 
     render() {
       return (
-        <div className='container'>
+        <div className='searchBar'>
           <form className='searchForm' onSubmit={(e) => this.handleSubmit(e)} >
             <input 
+              className='search'
               type = 'text' name='query' placeholder='Search here'
               onChange={(e) => this.handleInput(e)} required
             />
-            <input type='submit' className='btn Submit' value="Search" />
+            <input type='submit' className='searchBtn' value="Search" />
           </form>     
         </div>
       );
