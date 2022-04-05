@@ -2,13 +2,16 @@ import React, {Component} from 'react'
 import SearchBar from '../SearchBar'
 import SongCard from '../SongCard/SongCard';
 import config from '../../utils/config'
+import CreatePlaylist from '../CreatePlaylist';
+
+const client_id = process.env.REACT_APP_SPOTIFY;
 
 export default class Home extends Component{
     state = {
         accessToken: '',
         isAuthorize: false,
         tracks: [],
-        selectedSong: ''
+        selectedSong: '',
     };
 
     componentDidMount() {
@@ -25,8 +28,6 @@ export default class Home extends Component{
 
     getSpotifyAuthorize() {
         const state = Date.now().toString();
-        const client_id = process.env.REACT_APP_SPOTIFY;
-
         return `https://accounts.spotify.com/authorize?response_type=token&client_id=${client_id}&state=${state}&scope=${config.SPOTIFY_SCOPE}&redirect_uri=http://localhost:3000`
     }
 
@@ -46,7 +47,15 @@ export default class Home extends Component{
 
                 {this.state.isAuthorize && (
                     <>
-                        <h1>Sposify Playlist</h1>
+                        <h1 className='sposifyHeading'>Sposify</h1>
+                        <>
+                            <CreatePlaylist
+                                accessToken={this.state.accessToken}
+                                client_id={client_id}
+                                uris={this.state.selectedSong}
+                            />
+                        </>
+
                         <SearchBar 
                             accessToken={this.state.accessToken}
                             onSuccess={(tracks) => this.handleSuccessSearch(tracks)}
