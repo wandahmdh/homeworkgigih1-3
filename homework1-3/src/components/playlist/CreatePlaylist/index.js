@@ -1,11 +1,15 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { addTracksToPlaylist, createPlaylist } from "../../utils/fetchApi";
 
-export default function CreatePlaylist({ accessToken, client_id, uris }) {
+export default function CreatePlaylist({ uris }) {
   const [playlist, setPlaylist] = useState({
     title: "",
     description: "",
   });
+
+  const accessToken = useSelector((state) => state.auth.accessToken);
+  const client_id = useSelector((state) => state.auth.client_id);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -65,7 +69,7 @@ export default function CreatePlaylist({ accessToken, client_id, uris }) {
             required
           ></textarea>
         </div>
-        <button className="btn btn-primary" type="submit">
+        <button className="btn createPlaylist" type="submit">
           Submit
         </button>
       </form>

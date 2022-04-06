@@ -1,55 +1,46 @@
-import React, {Component} from 'react'
-import config from '../../utils/config'
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { searchTrack } from "../../utils/fetchApi";
 
-export default class SearchBar extends Component{
-  state ={
-    text: '',
-  }
+export default function SearchBar({ onSuccess, onClearSearch }) {
+  const [text, setText] = useState("");
+  const accessToken = useSelector((state) => state.auth.accessToken);
 
-  handleInput(e) {
-    this.setState({ text: e.target.value });
-  }
+  const handleInput = (e) => {
+      setText(e.target.value);
+  };
 
-  async handleSubmit(e) {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+      e.preventDefault();
 
-    const { text } = this.state;
+      try {
+          const responseSearch = await searchTrack(text, accessToken);
 
-    var requestOptions = {
-      headers: {
-        Authorization: 'Bearer ' + this.props.accessToken,
-          'content-type': 'application/json',
-      },
-    };
+          const tracks = responseSearch.tracks.items;
+          onSuccess(tracks);
+      } catch (e) {
+          alert(e);
+      }
+  };
 
-    try {
-      const response = await fetch(
-        `${config.SPOTIFY_BASE_URL}/search?type=track&q=${text}`,
-        requestOptions
-      ).then((data) => data.json());
+  const clearSearch = () => {
+      setText("");
+      onClearSearch();
+  };
 
-      const tracks = response.tracks.items;
-      this.props.onSuccess(tracks);
-    }
-    catch (e) {
-      console.log(e);
-    }
-  }
-
-    render() {
-      return (
-        <div className='searchBar'>
-          <form className='searchForm' onSubmit={(e) => this.handleSubmit(e)} >
-            <input 
-              className='search'
-              type = 'text' name='query' placeholder='Search here'
-              onChange={(e) => this.handleInput(e)} required
-            />
-            <input type='submit' className='searchBtn' value="Search" />
-          </form>     
-        </div>
-      );
-    }
+  return (
+    <div className='searchBar'>
+      <form className='searchForm' onSubmit={handleSubmit} >
+        <input 
+          className='search'
+          type = 'text' name='query' placeholder='Search here'
+          onChange={handleInput} required value = {text}
+        />
+        <input type='submit' className='btn searchBtn' value="Search" />
+      </form>
+      <button className="btn clearSearch" onClick={clearSearch}>Clear Search</button>     
+    </div>
+  );
 }
 
 export {SearchBar}

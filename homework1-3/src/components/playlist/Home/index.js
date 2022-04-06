@@ -1,83 +1,133 @@
-import React, {Component} from 'react'
+import React, { useEffect, useState } from "react";
 import SearchBar from '../SearchBar'
 import SongCard from '../SongCard/SongCard';
 import config from '../../utils/config'
 import CreatePlaylist from '../CreatePlaylist';
+import { getUserProfile } from "../../utils/fetchApi";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../utils/authSlice";
 
-const client_id = process.env.REACT_APP_SPOTIFY;
+// const client_id = process.env.REACT_APP_SPOTIFY;
 
-export default class Home extends Component{
-    state = {
-        accessToken: '',
-        isAuthorize: false,
-        tracks: [],
-        selectedSong: '',
+export default function Home() {
+    const [tracks, setTracks] = useState([]);
+    const [selectedTrackURI, setSelectedTrackURI] = useState([]);
+    const [selectedTracks, setSelectedTracks] = useState([]);
+    const [isSearch, setIsSearch] = useState(false);
+    const isAuthorized = useSelector((state) => state.auth.isAuthorized);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.hash);
+        const accessTokenParams = params.get("#access_token");
+
+        if (accessTokenParams !== null) {
+            const setUserProfile = async () => {
+                try {
+                    const response = await getUserProfile(accessTokenParams);
+                    dispatch(
+                        login({
+                            accessToken: accessTokenParams,
+                            user: response,
+                        })
+                    );
+                } catch (e) {
+                    alert(e);
+                }
+            };
+            setUserProfile();
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!isSearch) {
+            const selectedTracks = filterSelectedTracks();
+
+            setTracks(selectedTracks);
+        }
+    }, [selectedTrackURI]);
+
+    const getSpotifyLinkAuthorize = () => {
+        const state = Date.now().toString();
+        const clientId = process.env.REACT_APP_SPOTIFY;
+
+        return `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=${config.RESPONSE_TYPE}&redirect_uri=${config.REDIRECT_URI}&state=${state}&scope=${config.SPOTIFY_SCOPE}`;
     };
 
-    componentDidMount() {
-        const accessToken = new URLSearchParams(window.location.hash).get(
-            '#access_token'
+    const filterSelectedTracks = () => {
+        return tracks.filter((track) => selectedTrackURI.includes(track.uri));
+    };
+
+    const handleSuccessSearch = (searchTracks) => {
+        setIsSearch(true);
+
+        const selectedSearchTracks = searchTracks.filter((data) =>
+            selectedTrackURI.includes(data.uri)
         );
 
-        this.setState({ accessToken, isAuthorize: accessToken !== null });
-    }
+        setTracks([...new Set([...selectedSearchTracks, ...searchTracks])]);
+    };
 
-    componentDidUpdate(prevProps, prevState) {
-      console.log(this.state.selectedSong)  
-    } 
+    const clearSearch = () => {
+        setTracks(selectedTracks);
+        setIsSearch(false);
+    };
 
-    getSpotifyAuthorize() {
-        const state = Date.now().toString();
-        return `https://accounts.spotify.com/authorize?response_type=token&client_id=${client_id}&state=${state}&scope=${config.SPOTIFY_SCOPE}&redirect_uri=http://localhost:3000`
-    }
+    const toggleSelect = (track) => {
+        const uri = track.uri;
 
-    handleSuccessSearch(tracks) {
-        this.setState({tracks});
-    }
+        if (selectedTrackURI.includes(uri)) {
+            setSelectedTrackURI(
+                selectedTrackURI.filter((item) => item !== uri)
+            );
+            setSelectedTracks(
+                selectedTrackURI.filter((item) => item.uri !== uri)
+            );
+        } else {
+            setSelectedTrackURI([...selectedTrackURI, uri]);
+            setSelectedTracks([...selectedTracks, track]);
+        }
+    };
 
-    render() {
         return (
             <div className='loginAuth'>
-                {!this.state.isAuthorize && (
+                 {!isAuthorized && (
                     <div className='login'>
                         <p>Login to Spotify here</p>
-                        <a href={this.getSpotifyAuthorize()} className='btnLogin'>Log in</a>
+                        <a href={getSpotifyLinkAuthorize()} className='btn btnLogin'>Log in</a>
                     </div>
                 )}
 
-                {this.state.isAuthorize && (
+                {isAuthorized && (
                     <>
                         <h1 className='sposifyHeading'>Sposify</h1>
                         <>
                             <CreatePlaylist
-                                accessToken={this.state.accessToken}
-                                client_id={client_id}
-                                uris={this.state.selectedSong}
+                                uris={selectedTrackURI}
                             />
                         </>
 
                         <SearchBar 
-                            accessToken={this.state.accessToken}
-                            onSuccess={(tracks) => this.handleSuccessSearch(tracks)}
+                            onSuccess={(tracks) => handleSuccessSearch(tracks)}
+                            onClearSearch={clearSearch}
                         />
-                        {this.state.tracks.length === 0 && <p>No tracks searched</p>}
+                        {tracks.length === 0 && <p>No tracks</p>}
 
                         <div className='track-list'>
-                            {this.state.tracks.map((tracks) => (
+                            {tracks.map((tracks) => (
                                 <SongCard
                                     key={tracks.id}
                                     url={tracks.album.images[0].url}
                                     title={tracks.name}
                                     artist={tracks.artists[0].name}
                                     uri={tracks.uri}
-                                    selected={tracks.uri === this.state.selectedSong}
-                                    onSelected={(uri) => this.setState({selectedSong: uri})}
+                                    select={selectedTrackURI.includes(tracks.uri)}
+                                    toggle={() => toggleSelect(tracks)}
                                 />
                             ))}
                         </div>
                     </>
                 )}
             </div>
-        )
+        );
     }
-}
