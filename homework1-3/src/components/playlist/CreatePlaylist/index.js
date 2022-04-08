@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { addTracksToPlaylist, createPlaylist } from "../../utils/fetchApi";
+import SearchBar from "../SearchBar";
 
 export default function CreatePlaylist({ uris }) {
   const [playlist, setPlaylist] = useState({
