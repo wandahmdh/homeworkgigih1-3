@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import config from "../../../../utils/config";
-import { getUserProfile } from "../../../../utils/fetchApi";
+import { getUserProfile } from "./../../utils/fetchApi";
 import { useDispatch } from "react-redux";
-import { login } from "../../../../utils/authSlice";
+import { login } from "../../utils/authSlice";
 import { useHistory } from "react-router-dom";
+import config from './../../utils/config';
 
 export default function Login() {
   const dispatch = useDispatch();

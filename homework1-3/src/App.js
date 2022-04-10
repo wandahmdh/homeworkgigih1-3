@@ -2,8 +2,8 @@ import './App.css'
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import PlaylistCreate from './components/playlist/Home/Pages/PlaylistCreate';
-import Login from './components/playlist/Home/Pages/Login';
+import PlaylistCreate from './Pages/PlaylistCreate/index';
+import Login from './Pages/Login/index';
 
 function App() {
   const isAuthorized = useSelector((state) => state.auth.isAuthorized);

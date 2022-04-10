@@ -10,7 +10,7 @@ export default function SongCard({ url, title, artist, select, toggle }) {
   
   return (
       <div className="song">
-          <img src={url} alt="Song Platlist" />
+          <img src={url} alt="Song Playlist" />
           <h4>{title}</h4>
           <p>{artist}</p>
           <button className='btn songCard'

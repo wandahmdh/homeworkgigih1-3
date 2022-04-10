@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import SearchBar from '../SearchBar'
-import SongCard from '../SongCard/SongCard';
+import SearchBar from '../../components/playlist/SearchBar'
+import SongCard from '../../components/playlist/SongCard/SongCard';
 import config from '../../utils/config'
-import CreatePlaylist from '../CreatePlaylist';
+import CreatePlaylist from '../../components/playlist/CreatePlaylist';
 import { getUserProfile } from "../../utils/fetchApi";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../utils/authSlice";
@@ -37,25 +37,21 @@ export default function Home() {
             };
             setUserProfile();
         }
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         if (!isSearch) {
-            const selectedTracks = filterSelectedTracks();
+            const selectedTracks = tracks.filter((track) => selectedTrackURI.includes(track.uri));
 
             setTracks(selectedTracks);
         }
-    }, [selectedTrackURI]);
+    }, [selectedTrackURI, isSearch, tracks]);
 
     const getSpotifyLinkAuthorize = () => {
         const state = Date.now().toString();
         const clientId = process.env.REACT_APP_SPOTIFY;
 
         return `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=${config.RESPONSE_TYPE}&redirect_uri=${config.REDIRECT_URI}&state=${state}&scope=${config.SPOTIFY_SCOPE}`;
-    };
-
-    const filterSelectedTracks = () => {
-        return tracks.filter((track) => selectedTrackURI.includes(track.uri));
     };
 
     const handleSuccessSearch = (searchTracks) => {

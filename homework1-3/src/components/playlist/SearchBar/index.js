@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { searchTrack } from "../../utils/fetchApi";
+import { searchTrack } from './../../../utils/fetchApi';
 
 export default function SearchBar({ onSuccess, onClearSearch }) {
   const [text, setText] = useState("");

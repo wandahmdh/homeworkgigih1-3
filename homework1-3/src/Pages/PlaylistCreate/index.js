@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import SongCard from "../../../SongCard/SongCard";
-import SearchBar from "../../../SearchBar";
-import CreatePlaylist from "../../../CreatePlaylist";
+import SongCard from "../../components/playlist/SongCard/SongCard";
+import CreatePlaylist from "../../components/playlist/CreatePlaylist";
+import SearchBar from './../../components/playlist/SearchBar/index';
 
 export default function PlaylistCreate() {
   const [tracks, setTracks] = useState([]);
@@ -11,15 +11,11 @@ export default function PlaylistCreate() {
 
   useEffect(() => {
     if (!isSearch) {
-      const selectedTracks = filterSelectedTracks();
+      const selectedTracks = tracks.filter((track) => selectedTrackURI.includes(track.uri));
 
       setTracks(selectedTracks);
     }
-  }, [selectedTrackURI]);
-
-  const filterSelectedTracks = () => {
-    return tracks.filter((track) => selectedTrackURI.includes(track.uri));
-  };
+  }, [selectedTrackURI, tracks, isSearch]);
 
   const handleSuccessSearch = (searchTracks) => {
     setIsSearch(true);
