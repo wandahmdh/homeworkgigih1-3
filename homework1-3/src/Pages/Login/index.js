@@ -30,7 +30,7 @@ export default function Login() {
       };
       setUserProfile();
     }
-  }, []);
+  }, [dispatch, history]);
 
   const getSpotifyLinkAuthorize = () => {
     const state = Date.now().toString();

@@ -54,7 +54,7 @@ export default function CreatePlaylist({ uris }) {
             type="text"
             name="title"
             id="title"
-            value={playlist.title}
+            defaultValue={playlist.title}
             onChange={handleChange}
             required
           />
@@ -64,7 +64,7 @@ export default function CreatePlaylist({ uris }) {
           <textarea
             id="desc"
             name="description"
-            value={playlist.description}
+            defaultValue={playlist.description}
             onChange={handleChange}
             required
           ></textarea>

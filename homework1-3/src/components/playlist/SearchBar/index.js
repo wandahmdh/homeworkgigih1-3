@@ -34,7 +34,7 @@ export default function SearchBar({ onSuccess, onClearSearch }) {
         <input 
           className='search'
           type = 'text' name='query' placeholder='Search here'
-          onChange={handleInput} required value = {text}
+          onChange={handleInput} required defaultValue = {text}
         />
         <input type='submit' className='btn searchBtn' value="Search" />
       </form>
