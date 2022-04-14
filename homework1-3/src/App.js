@@ -4,12 +4,27 @@ import { Redirect } from "react-router-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PlaylistCreate from './Pages/PlaylistCreate/index';
 import Login from './Pages/Login/index';
+import { ThemeProvider, createTheme } from '@mui/material'
+
+const theme = createTheme({
+  typography: {
+    allVariants: {
+      color: 'white',
+    }
+  },
+  palette: {
+    primary: {
+      main: '#27ae60',
+    }
+  }
+})
 
 function App() {
   const isAuthorized = useSelector((state) => state.auth.isAuthorized);
   
   return (
     <Router>
+      <ThemeProvider theme={theme}>
       <div className="App">
         <div className="container">
           <div>
@@ -24,7 +39,7 @@ function App() {
           </div>
         </div>
       </div>
-      
+      </ThemeProvider>
     </Router>
   );
 }

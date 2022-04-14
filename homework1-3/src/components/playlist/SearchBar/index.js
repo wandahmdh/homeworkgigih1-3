@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { searchTrack } from './../../../utils/fetchApi';
+import { Container, Button, TextField } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
 export default function SearchBar({ onSuccess, onClearSearch }) {
   const [text, setText] = useState("");
@@ -29,17 +31,31 @@ export default function SearchBar({ onSuccess, onClearSearch }) {
   };
 
   return (
-    <div className='searchBar'>
-      <form className='searchForm' onSubmit={handleSubmit} >
-        <input 
-          className='search'
-          type = 'text' name='query' placeholder='Search here'
-          onChange={handleInput} required defaultValue = {text}
-        />
-        <input type='submit' className='btn searchBtn' value="Search" />
-      </form>
-      <button className="btn clearSearch" onClick={clearSearch}>Clear Search</button>     
-    </div>
+    <Container maxWidth="100%"> 
+      <div className='searchBar'>
+        <form className='searchForm' onSubmit={handleSubmit} >
+          <TextField 
+            className="searchField"
+            id="outlined-basic" 
+            type = 'text' 
+            name='query' 
+            placeholder='Search here'
+            size= 'small'
+            inputProps={{ style: { color: "white" } }}
+            onChange={handleInput} required 
+            defaultValue = {text}
+          />
+          <Button 
+            className="btn SearchBar"
+            variant="contained" 
+            type='submit' 
+            startIcon={ <SearchIcon /> }>
+              Search
+          </Button>
+        </form>
+        <Button variant="outlined" className="clearSearch" onClick={clearSearch}>Clear Search</Button>    
+      </div>
+    </Container>
   );
 }
 

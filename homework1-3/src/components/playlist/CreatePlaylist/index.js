@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { addTracksToPlaylist, createPlaylist } from './../../../utils/fetchApi';
+import { Button } from '@mui/material';
+
 
 export default function CreatePlaylist({ uris }) {
   const [playlist, setPlaylist] = useState({
@@ -69,9 +71,12 @@ export default function CreatePlaylist({ uris }) {
             required
           ></textarea>
         </div>
-        <button className="btn createPlaylist" type="submit">
-          Submit
-        </button>
+        <Button 
+            className="btn createPlaylist"
+            variant="contained" 
+            type='submit'>
+              Submit
+        </Button>
       </form>
     </div>
     </div>

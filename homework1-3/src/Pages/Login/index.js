@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { login } from "../../utils/authSlice";
 import { useHistory } from "react-router-dom";
 import config from './../../utils/config';
+import { Button } from '@mui/material';
+
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -44,9 +46,13 @@ export default function Login() {
       <p>
         Please Login before using SPosify.
       </p>
-      <a href={getSpotifyLinkAuthorize()} className="btn btnLogin">
+      <Button 
+            variant="contained" 
+            type='submit' 
+            href={getSpotifyLinkAuthorize()} 
+            className="btn btnLogin">
         Login
-      </a>
+      </Button>
     </div>
   );
 } 

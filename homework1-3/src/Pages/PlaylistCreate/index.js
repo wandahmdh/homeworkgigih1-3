@@ -45,7 +45,7 @@ export default function PlaylistCreate() {
   };
 
   return (
-    <>
+    <div>
       <hr />
     <h1>Sposify</h1>
       <SearchBar
@@ -68,6 +68,6 @@ export default function PlaylistCreate() {
         ))}
       </div>
       <CreatePlaylist uris={selectedTrackURI} />
-    </>
+    </div>
   );
 }
