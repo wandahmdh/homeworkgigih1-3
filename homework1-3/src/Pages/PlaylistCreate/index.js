@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import SongCard from "../../components/playlist/SongCard/SongCard";
+import SongCard from "../../components/playlist/SongCard/SongCard.tsx";
 import CreatePlaylist from "../../components/playlist/CreatePlaylist";
-import SearchBar from './../../components/playlist/SearchBar/index';
+import SearchBar from '../../components/playlist/SearchBar/index';
 
 export default function PlaylistCreate() {
   const [tracks, setTracks] = useState([]);

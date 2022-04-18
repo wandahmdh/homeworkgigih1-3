@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 
-export default function SongCard({ url, title, artist, select, toggle }) {
+interface SongCardProps {
+  url: string;
+  title: string;
+  artist: string;
+  select: boolean;
+  toggle: () => void;
+}
+
+export default function SongCard({ url, title, artist, select, toggle } : SongCardProps) {
     const [isSelected, setIsSelected] = useState(select);
 
     const handleSelect = () => {
