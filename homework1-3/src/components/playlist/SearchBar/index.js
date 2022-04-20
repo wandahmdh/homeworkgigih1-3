@@ -32,7 +32,7 @@ export default function SearchBar({ onSuccess, onClearSearch }) {
 
   return (
     <Container maxWidth="100%"> 
-      <div className='searchBar'>
+      <div className='searchBar' id='searchBar'>
         <form className='searchForm' onSubmit={handleSubmit} >
           <TextField 
             className="searchField"
@@ -44,11 +44,13 @@ export default function SearchBar({ onSuccess, onClearSearch }) {
             inputProps={{ style: { color: "white" } }}
             onChange={handleInput} required 
             defaultValue = {text}
+            data-testid={"search-input"}
           />
           <Button 
             className="btn SearchBar"
             variant="contained" 
             type='submit' 
+            data test-id='search-button'
             startIcon={ <SearchIcon /> }>
               Search
           </Button>

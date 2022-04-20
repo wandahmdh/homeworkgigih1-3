@@ -56,6 +56,7 @@ export default function CreatePlaylist({ uris }) {
             type="text"
             name="title"
             id="title"
+            placeholder="Enter title here"
             defaultValue={playlist.title}
             onChange={handleChange}
             required
@@ -64,6 +65,7 @@ export default function CreatePlaylist({ uris }) {
         <div className="form-group">
           <label htmlFor="desc">Description</label><br></br>
           <textarea
+            placeholder="Enter description here"
             id="desc"
             name="description"
             defaultValue={playlist.description}
