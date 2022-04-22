@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import SongCard from "../../components/playlist/SongCard/SongCard.tsx";
-import CreatePlaylist from "../../components/playlist/CreatePlaylist";
-import SearchBar from '../../components/playlist/SearchBar/index';
+import FormPlaylist from "../../components/playlist/FormPlaylist";
+import SearchBar from "../../components/SearchBar";
+import './CreatePlaylist.css';
 
-export default function PlaylistCreate() {
+export default function CreatePlaylist() {
   const [tracks, setTracks] = useState([]);
   const [selectedTrackURI, setSelectedTrackURI] = useState([]);
   const [selectedTracks, setSelectedTracks] = useState([]);
@@ -45,14 +46,13 @@ export default function PlaylistCreate() {
   };
 
   return (
-    <div>
+    <div className="createPlaylist">
       <hr />
-    <h1>Sposify</h1>
+      <img src='https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg' alt='logo'/> 
       <SearchBar
         onSuccess={(tracks) => handleSuccessSearch(tracks)}
         onClearSearch={clearSearch}
       />
-
       {tracks.length === 0 && <p>No tracks</p>}
 
       <div className="track-list">
@@ -67,7 +67,7 @@ export default function PlaylistCreate() {
           />
         ))}
       </div>
-      <CreatePlaylist uris={selectedTrackURI} />
+      <FormPlaylist uris={selectedTrackURI} />
     </div>
   );
 }

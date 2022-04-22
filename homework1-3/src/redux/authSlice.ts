@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { User } from '../types/spotify';
+import { User } from '../spotify';
 
 interface IInitialState {
   accessToken: string;

@@ -1,0 +1,11 @@
+.createPlaylist {
+    display: grid;
+    place-items: center;
+    background-color: black;
+    height: 100%;
+}
+
+.createPlaylist img {
+    width: 415px;
+    height: 175px;
+}

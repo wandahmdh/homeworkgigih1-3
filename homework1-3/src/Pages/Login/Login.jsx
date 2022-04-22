@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { getUserProfile } from "./../../utils/fetchApi";
+import { getUserProfile } from "../../utils/fetchApi";
 import { useDispatch } from "react-redux";
 import { login } from "../../utils/authSlice";
 import { useHistory } from "react-router-dom";
-import config from './../../utils/config';
-import { Button } from '@mui/material';
+import config from '../../utils/config';
+import './Login.css';
 
 
 export default function Login() {
@@ -42,17 +42,9 @@ export default function Login() {
   };
 
   return (
-    <div className="login-wrapper">
-      <p>
-        Please Login before using SPosify.
-      </p>
-      <Button 
-            variant="contained" 
-            type='submit' 
-            href={getSpotifyLinkAuthorize()} 
-            className="btn btnLogin">
-        Login
-      </Button>
+    <div className='login'>
+        <img src='https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg' alt='logo'/> 
+        <a href={getSpotifyLinkAuthorize()} className='btn Login'>LOGIN WITH SPOTIFY</a>  
     </div>
   );
 } 

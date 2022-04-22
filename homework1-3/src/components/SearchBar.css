@@ -1,0 +1,19 @@
+.searchBar {
+    border: 1px solid #fff;
+    border-radius: 99px;
+    width: 300px;
+    padding: 20px;
+    color: #fff;
+}
+
+.searchField {
+    background-color: transparent;
+    border: 0px;
+    outline: none;
+    color: #fff;
+
+}
+
+.btnSearchBar{
+    color: #fff;
+}

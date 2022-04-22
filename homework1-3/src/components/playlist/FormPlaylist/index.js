@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { addTracksToPlaylist, createPlaylist } from './../../../utils/fetchApi';
+import { addTracksToPlaylist, createPlaylist } from '../../../utils/fetchApi';
 import { Button } from '@mui/material';
 
 
-export default function CreatePlaylist({ uris }) {
+export default function FormPlaylist({ uris }) {
   const [playlist, setPlaylist] = useState({
     title: "",
     description: "",
