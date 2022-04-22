@@ -80,7 +80,7 @@ export default function FormPlaylist({ uris }) {
           <label className="placeholder">Description</label>
         </div>
         <Button 
-            className="submit"
+            class="submit"
             variant="contained" 
             type='submit'>
               Submit
