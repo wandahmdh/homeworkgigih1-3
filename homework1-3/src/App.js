@@ -4,17 +4,21 @@ import { Redirect } from "react-router-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CreatePlaylist from './Pages/CreatePlaylist/CreatePlaylist';
 import Login from './Pages/Login/Login';
-import { ThemeProvider, createTheme } from '@mui/material'
+import { ThemeProvider, createTheme } from '@mui/material';
+
 
 const theme = createTheme({
   typography: {
     allVariants: {
-      color: 'white',
+      color: 'black',
     }
   },
   palette: {
     primary: {
       main: '#27ae60',
+    },
+    secondary: {
+      main: '#ffffff',
     }
   }
 })

@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { searchTrack } from './../utils/fetchApi';
 import SearchIcon from '@mui/icons-material/Search';
-import { Button } from "@mui/material";
-import './SearchBar.css'
+import { Button, TextField, IconButton } from "@mui/material";
+import './SearchBar.css';
+
 
 export default function SearchBar({ onSuccess, onClearSearch }) {
   const [text, setText] = useState("");
@@ -35,29 +36,37 @@ export default function SearchBar({ onSuccess, onClearSearch }) {
     <>
       <div className='searchBar' id='searchBar'>
         <form className='searchForm' onSubmit={handleSubmit} >
-          <input 
+          <TextField  
             className="searchField"
-            id="outlined-basic" 
+            id="standard-basic"
+            variant="standard"
             type = 'text' 
             name='query' 
+            color= 'secondary'
             placeholder='Search here'
-            size= 'small'
-            inputProps={{ style: { color: "white" } }}
+            inputProps={{ style: { color: "black" } }}
             onChange={handleInput} required 
             defaultValue = {text}
-            data-testid={"search-input"}
           />
-          <Button 
+          <IconButton 
+            type="submit" 
+            aria-label="search"
             className="btnSearchBar"
-            type='submit' 
-            data test-id='search-button'
-            startIcon={ <SearchIcon /> }>
-              {/* <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" /> */}
-          </Button>
+            edge="end"
+            >
+            <SearchIcon />
+          </IconButton>
         </form>
       </div>
-      <div>
-        <button variant="outlined" className="clearSearch" onClick={clearSearch}>Clear Search</button>    
+      <div className="clearSearch" >
+        <Button 
+          color= 'secondary'
+          variant="text" 
+          size="small"
+          margin= '20px'
+          onClick={clearSearch}>
+            Clear Search
+        </Button>    
       </div>
     </>
   );
