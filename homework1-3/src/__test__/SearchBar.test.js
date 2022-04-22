@@ -4,6 +4,7 @@ import { render, screen, cleanup } from '@testing-library/react';
 import store from "../redux/store";
 import { Provider } from 'react-redux';
 import userEvent from "@testing-library/user-event";
+import '@testing-library/jest-dom/extend-expect';
 
 const setup = () => render(
     <Provider store={store}>
@@ -16,21 +17,21 @@ const setup = () => render(
     afterEach(cleanup);
  
     it('Success rendered', () => {
-      const searchInput = screen.getByPlaceholderText('Search here');
-      const searchBtn = screen.getByText('Search');
+      const searchInput = screen.getByPlaceholderText('Search tracks here...');
+      const clearSearch = screen.getByText('Clear Search');
  
       expect(searchInput).toBeInTheDocument();
-      expect(searchBtn).toBeInTheDocument();
+      expect(clearSearch).toBeInTheDocument();
     });
  
     it('Can type in search track and button not disable', () => {
-    const searchInput = screen.getByPlaceholderText('Search here');
-    const searchBtn = screen.getByText('Search');
+    const searchInput = screen.getByPlaceholderText('Search tracks here...');
+    const clearSearch = screen.getByText('Clear Search');
  
       userEvent.type(searchInput, 'blackpink');
  
       expect(searchInput).toHaveValue('blackpink');
-      expect(searchBtn).not.toBeDisabled();
+      expect(clearSearch).not.toBeDisabled();
     });
   }); 
 

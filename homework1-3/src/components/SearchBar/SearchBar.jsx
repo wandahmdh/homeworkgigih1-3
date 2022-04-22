@@ -43,7 +43,7 @@ export default function SearchBar({ onSuccess, onClearSearch }) {
             type = 'text' 
             name='query' 
             color= 'secondary'
-            placeholder='Search here'
+            placeholder='Search tracks here...'
             inputProps={{ style: { color: "black" } }}
             onChange={handleInput} required 
             defaultValue = {text}
@@ -60,10 +60,9 @@ export default function SearchBar({ onSuccess, onClearSearch }) {
       </div>
       <div className="clearSearch" >
         <Button 
-          color= 'secondary'
-          variant="text" 
+          color= 'primary'
+          variant="outlined" 
           size="small"
-          margin= '20px'
           onClick={clearSearch}>
             Clear Search
         </Button>    

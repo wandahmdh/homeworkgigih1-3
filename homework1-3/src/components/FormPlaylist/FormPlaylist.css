@@ -58,6 +58,10 @@
     padding: 4px 20px 0;
     width: 100%;
   }
+
+  input::placeholder {
+    opacity: 0;
+  }
   
   .cut {
     background-color: rgb(18, 18, 18);;

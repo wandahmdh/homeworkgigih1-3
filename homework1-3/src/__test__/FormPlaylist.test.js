@@ -1,13 +1,15 @@
-import CreatePlaylist from "../components/playlist/CreatePlaylist/index"
+import FormPlaylist from '../components/FormPlaylist/FormPlaylist';
 import React from 'react';
 import { render, screen, cleanup } from '@testing-library/react';
 import store from "../redux/store";
 import { Provider } from 'react-redux';
 import userEvent from "@testing-library/user-event";
+import '@testing-library/jest-dom/extend-expect';
+
 
 const setup = () => render(
     <Provider store={store}>
-      <CreatePlaylist />
+      <FormPlaylist />
     </Provider>
   );
  
@@ -16,8 +18,8 @@ const setup = () => render(
     afterEach(cleanup);
  
     it('Success rendered Form Playlist', () => {
-        const nameInput = screen.getByPlaceholderText('Enter title here');
-        const descInput = screen.getByPlaceholderText('Enter description here');
+        const nameInput = screen.getByPlaceholderText('Playlist name');
+        const descInput = screen.getByPlaceholderText('Description');
         const submitBtn = screen.getByText('Submit');
     
         expect(nameInput).toBeInTheDocument();
@@ -26,8 +28,8 @@ const setup = () => render(
     });
 
     it('Can type in search track and button not disable', () => {
-        const nameInput = screen.getByPlaceholderText('Enter title here');
-        const descInput = screen.getByPlaceholderText('Enter description here');
+        const nameInput = screen.getByPlaceholderText('Playlist name');
+        const descInput = screen.getByPlaceholderText('Description');
 
         userEvent.type(nameInput, 'blackpink playlist');
         userEvent.type(descInput, 'blackpink playlist');

@@ -48,36 +48,36 @@ export default function FormPlaylist({ uris }) {
 
   return (
     <div className="container">
-      <form class="form" onSubmit={handleSubmit}>
-        <div class="title">Welcome</div>
-        <div class="subtitle">Let's create your playlist!</div>
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="title">Welcome</div>
+        <div className="subtitle">Let's create your playlist!</div>
 
-        <div class="input-container ic1">
+        <div className="input-container ic1">
           <input 
             type="text"
             name="title"
             id="title"
-            class="input" 
+            className="input" 
             defaultValue={playlist.title}
             onChange={handleChange}
             required
-            placeholder=" " />
-          <div class="cut"></div>
-          <label for="firstname" class="placeholder">Playlist name</label>
+            placeholder="Playlist name" />
+          <div className="cut"></div>
+          <label className="placeholder">Playlist name</label>
         </div>
 
-        <div class="input-container ic2">
+        <div className="input-container ic2">
           <input 
             id="desc"
-            class="input" 
+            className="input" 
             type="text" 
             name="description"
             defaultValue={playlist.description}
             onChange={handleChange}
             required
-            placeholder=" " />
-          <div class="cut"></div>
-          <label for="lastname" class="placeholder">Description</label>
+            placeholder="Description" />
+          <div className="cut"></div>
+          <label className="placeholder">Description</label>
         </div>
         <Button 
             className="submit"
