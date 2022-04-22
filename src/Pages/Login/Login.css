@@ -1,13 +1,14 @@
 
 .login {
-    display: grid;
-    place-items: center;
-    height: 100vh;
+  display: grid;
+  place-items: center;
+    height: 50vh;
     background-color: black;
   }
   
   .login img {
-    width: 100%
+    width: 622.5px;
+    height: 262.5px;
   }
   
   .btn {
