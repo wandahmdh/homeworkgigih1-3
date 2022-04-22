@@ -3,9 +3,17 @@
     place-items: center;
     background-color: black;
     height: 100%;
+    margin: 20px 100px 100px;
 }
 
 .createPlaylist img {
     width: 415px;
     height: 175px;
+    margin-bottom: 20px;
+}
+
+.main {
+    display: grid;
+    place-items: center;
+    margin-bottom: 30px;
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { searchTrack } from './../utils/fetchApi';
+import { searchTrack } from './../../utils/fetchApi';
 import SearchIcon from '@mui/icons-material/Search';
 import { Button, TextField, IconButton } from "@mui/material";
 import './SearchBar.css';

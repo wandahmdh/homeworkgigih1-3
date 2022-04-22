@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import SongCard from "../../components/playlist/SongCard/SongCard.tsx";
-import FormPlaylist from "../../components/playlist/FormPlaylist";
-import SearchBar from "../../components/SearchBar";
+import SongCard from "../../components/SongCard/SongCard.tsx";
+import FormPlaylist from "../../components/FormPlaylist/FormPlaylist";
+import ImageList from '@mui/material/ImageList';
+import SearchBar from '../../components/SearchBar/SearchBar';
 import './CreatePlaylist.css';
 
 export default function CreatePlaylist() {
@@ -47,27 +48,42 @@ export default function CreatePlaylist() {
 
   return (
     <div className="createPlaylist">
-      <hr />
-      <img src='https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg' alt='logo'/> 
-      <SearchBar
-        onSuccess={(tracks) => handleSuccessSearch(tracks)}
-        onClearSearch={clearSearch}
-      />
-      {tracks.length === 0 && <p>No tracks</p>}
-
-      <div className="track-list">
-        {tracks.map((track) => (
-          <SongCard
-            key={track.id}
-            url={track.album.images[0].url}
-            title={track.name}
-            artist={track.artists[0].name}
-            select={selectedTrackURI.includes(track.uri)}
-            toggle={() => toggleSelect(track)}
-          />
-        ))}
+      <div className="header">
+        <img src='https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg' alt='logo'/> 
       </div>
-      <FormPlaylist uris={selectedTrackURI} />
+      
+      <div className="main">
+        <SearchBar
+          onSuccess={(tracks) => handleSuccessSearch(tracks)}
+          onClearSearch={clearSearch}
+        />
+        {tracks.length === 0 && <p>No tracks</p>}
+
+        <div className="track-list">
+          <ImageList cols={5} gap={8}>
+            {tracks.map((track) => (
+              <SongCard
+                key={track.id}
+                url={track.album.images[0].url}
+                title={track.name}
+                artist={track.artists[0].name}
+                select={selectedTrackURI.includes(track.uri)}
+                toggle={() => toggleSelect(track)}
+              />
+            ))}
+          </ImageList>
+        </div>
+      </div>
+
+      <div className="nav"></div>
+
+      <div className="side">
+        <FormPlaylist uris={selectedTrackURI} />    
+      </div>
+
+      <div className="footer">
+        
+      </div>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import SearchBar from "../components/playlist/SearchBar/index"
+import SearchBar from '../components/SearchBar/SearchBar';
 import React from 'react';
 import { render, screen, cleanup } from '@testing-library/react';
 import store from "../redux/store";

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { addTracksToPlaylist, createPlaylist } from '../../../utils/fetchApi';
+import { addTracksToPlaylist, createPlaylist } from '../../utils/fetchApi';
 import { Button } from '@mui/material';
+import './FormPlaylist.css';
 
 
 export default function FormPlaylist({ uris }) {
@@ -47,40 +48,44 @@ export default function FormPlaylist({ uris }) {
 
   return (
     <div className="container">
-       <div className="form-playlist">
-      <h3>Create Playlist</h3>
-      <form className="form" onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="title">Title</label> <br></br>
-          <input
+      <form class="form" onSubmit={handleSubmit}>
+        <div class="title">Welcome</div>
+        <div class="subtitle">Let's create your playlist!</div>
+
+        <div class="input-container ic1">
+          <input 
             type="text"
             name="title"
             id="title"
-            placeholder="Enter title here"
+            class="input" 
             defaultValue={playlist.title}
             onChange={handleChange}
             required
-          />
+            placeholder=" " />
+          <div class="cut"></div>
+          <label for="firstname" class="placeholder">Playlist name</label>
         </div>
-        <div className="form-group">
-          <label htmlFor="desc">Description</label><br></br>
-          <textarea
-            placeholder="Enter description here"
+
+        <div class="input-container ic2">
+          <input 
             id="desc"
+            class="input" 
+            type="text" 
             name="description"
             defaultValue={playlist.description}
             onChange={handleChange}
             required
-          ></textarea>
+            placeholder=" " />
+          <div class="cut"></div>
+          <label for="lastname" class="placeholder">Description</label>
         </div>
         <Button 
-            className="btn createPlaylist"
+            className="submit"
             variant="contained" 
             type='submit'>
               Submit
         </Button>
       </form>
-    </div>
     </div>
    
   );
