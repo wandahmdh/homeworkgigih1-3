@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+# SPOSIFY MUSIC APP
 
+SPosify is a clone from the music app Spotify, this is my submission for GenerasiGigih2.0 final project.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Screenshots
 
-In the project directory, you can run:
+![image](https://user-images.githubusercontent.com/97523374/164752403-1d1a2e6c-24b5-4bae-bf5c-1b0c9c50bd22.png)
+![image](https://user-images.githubusercontent.com/97523374/164757295-b4f59109-0d80-44a3-ac73-42dbd3e48ab0.png)
+![image](https://user-images.githubusercontent.com/97523374/164757345-b8a7de6a-3c09-4c53-b993-dd94b3b690c8.png)
+![image](https://user-images.githubusercontent.com/97523374/164757403-45fd8e5e-bbe7-4a2b-976b-accd88fde1cb.png)
+![image](https://user-images.githubusercontent.com/97523374/164757831-db8cdbeb-b59e-41f5-9d8b-db6efb34e389.png)
 
-### `npm start`
+## Features
+- Login and Authorize Spotify Account
+- Search for Tracks
+- Tracks information (artists, title, images)
+- Select multiple tracks
+- Create a playlist
 
-Runs the app in the development mode.\
+### Installation
+- Clone the project
+"gh repo clone wandahmdh/sposify-react-app"
+
+- Move to directory
+"cd sposify-react-app"
+
+- Install dependencies
+"npm install"
+
+- Setup the API KEY
+"REACT_APP_SPOTIFY"
+
+- Start the app
+"npm start"
+
+- Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
