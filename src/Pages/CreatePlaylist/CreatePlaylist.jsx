@@ -53,6 +53,8 @@ export default function CreatePlaylist() {
       </div>
       
       <div className="main">
+        <FormPlaylist uris={selectedTrackURI} />    
+
         <SearchBar
           onSuccess={(tracks) => handleSuccessSearch(tracks)}
           onClearSearch={clearSearch}
@@ -73,16 +75,6 @@ export default function CreatePlaylist() {
             ))}
           </ImageList>
         </div>
-      </div>
-
-      <div className="nav"></div>
-
-      <div className="side">
-        <FormPlaylist uris={selectedTrackURI} />    
-      </div>
-
-      <div className="footer">
-        
       </div>
     </div>
   );

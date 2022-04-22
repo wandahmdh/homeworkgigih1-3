@@ -60,7 +60,7 @@ export default function SearchBar({ onSuccess, onClearSearch }) {
       </div>
       <div className="clearSearch" >
         <Button 
-          color= 'primary'
+          color= 'secondary'
           variant="outlined" 
           size="small"
           onClick={clearSearch}>

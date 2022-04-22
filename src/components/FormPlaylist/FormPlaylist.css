@@ -7,13 +7,22 @@
     background-color: #fff;
 }
 
+.createPlaylistBtn{
+  margin-bottom: 40px;
+}
+
 .form {
-    background-color: rgb(18, 18, 18);;
+    background-color: rgb(18, 18, 18);
     border-radius: 20px;
     box-sizing: border-box;
     height: 430px;
     padding: 20px;
     width: 500px;
+  }
+
+  .formDialog{
+    background-color: rgb(18, 18, 18);
+    border-radius: 20px;
   }
   
   .title {
